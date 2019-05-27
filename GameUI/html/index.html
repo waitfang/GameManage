@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="shortcut icon" href="#" />
+    <script type="text/javascript" src="../js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.json.min.js"></script>
+    <script type="text/javascript" src="../js/wscore.js"></script>
+    <script type="text/javascript">
+        function GetUserInfo() {
+            var data = { ts_id: "0", UserId: $("#txtUserId").val() };
+            //呼叫SocketWeb中UserInfoCommand
+            top.wscore.send('UserInfoCommand', data, handlercallback);
+        }
+
+        //回调函数
+        handlercallback = function (data) { 
+            $("#txtArea").val($.toJSON(data));
+            $("#txtArea").text($.toJSON(data));
+        }
+    </script>
+</head>
+<body> 
+    用户ID：<input type="text" value="" id="txtUserId" />  <input type="button" value="GetUserInfo" onclick="GetUserInfo(); return false;" /> 
+    <br/> <br/>
+    <textarea id="txtArea" style="width:500px;height:300px;"></textarea>
+</body>
+</html>
